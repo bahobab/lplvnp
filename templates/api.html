@@ -1,0 +1,129 @@
+{% extends "base.html" %}{% block head %} {% block title %}<title>
+  Welcome to LPLVNP API</title
+>{% endblock %}
+<style>
+  .main-title {
+    background: #333;
+    margin: 20px 0;
+    /* text-align: center; */
+    border-radius: 3px;
+  }
+
+  .main-title h3 {
+    color: #ddd;
+  }
+
+  .api {
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  .usage-example {
+    color: var(--success);
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="mx-auto">
+  <div class="row text-center main-title">
+    <h3 class="mx-auto">
+      Lincoln Park - Lakeview - North Pond Photo API
+    </h3>
+  </div>
+  <div class="row ">
+    <div class="col-md-4">
+      <ul class="list-group">
+        <h2>api v1<span class="text-danger small"> (beta)</span></h2>
+
+        <li class="list-group-item bg-light">
+          <span class="api">/api/v1/images/&#60;image_name&#62;</span
+          ><br />Returns one image by image name a json object
+        </li>
+        <li class="list-group-item bg-light">
+          <span class="api">/api/v1/images?&#60;querystring&#62;</span
+          ><br />Returns one image with image name in query string as the actual
+          image
+        </li>
+        <li class="list-group-item bg-light">
+          <span class="api">/api/v1/images/all/&#60;n&#62;</span><br />Returns
+          array of n images as a json objects
+        </li>
+        <!-- <li class="list-group-item bg-light">
+          <span class="api">/api/v1/images/all/&#60;subject&#62;</span
+          ><br />Returns array of 20 images of &#60;subject&#62; as json objects
+        </li> -->
+        <li class="list-group-item bg-light">
+          <span class="api">/api/v1/images/&#60;subject&#62;/&#60;n&#62;</span
+          ><br />Returns array of n images of &#60;subject&#62; as a json
+          objects
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <h3>Usage</h3>
+      <ul class="list-group">
+        <li class="list-group-item  bg-light">
+          <h5>To get a single image with the image name</h5>
+          <span class="api"
+            >-
+            &#60;base_url&#62;/api/v1/images?image_name=&#60;image_name></span
+          ><br />
+          <span>Example:</span
+          ><span class="usage-example"
+            >http://&#60;base_url&#62;/api/v1/images?image_name=0cec16c3-3146-4a8d-b4a1-5bc7065a817d.jpg</span
+          ><br />
+          <span class="api"
+            >- &#60;base_url&#62;/api/v1/image_name=&#60;image_name></span
+          ><br />
+          <span>Example:</span
+          ><span class="usage-example"
+            >http://&#60;base_url&#62;/api/v1/images/0cec16c3-3146-4a8d-b4a1-5bc7065a817d.jpg</span
+          >
+        </li>
+        <li class="list-group-item  bg-light">
+          <h5>To get n random images...</h5>
+          <span class="api"
+            >- &#60;base_url&#62;/api/v1/images/all/&#60;n&#62;</span
+          ><br />
+          <span>Example:</span
+          ><span class="usage-example"
+            >http://&#60;base_url&#62;/api/v1/images/all/10</span
+          >
+        </li>
+        <li class="list-group-item  bg-light">
+          <h5>To get n random images about &#60;subject&#62;</h5>
+          <span class="api"
+            >-
+            &#60;base_url&#62;/api/v1/images/&#60;subject&#62;/&#60;n&#62;</span
+          ><br />
+          <span>Example:</span
+          ><span class="usage-example"
+            >http://&#60;base_url&#62;/api/v1/images/goose/10</span
+          >
+        </li>
+        <li class="list-group-item  bg-light">
+          Or you could try a <a href="search">custom search here</a>
+        </li>
+      </ul>
+      <div class="row  mx-auto">
+        <p class="mt-3">
+          Please refer to the
+          <i class="fa fa-github" aria-hidden="true"></i>
+          <a
+            class="link"
+            href="https://github.com/bahobab/lvlpnp"
+            target="_blank"
+            >github page</a
+          >
+          for more...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+  <!-- animated counters, by B Traersi -->
+  <!-- https://www.youtube.com/watch?v=a6XIMIKmj9k&feature=push-fr&attr_tag=KBfJtEDCoY1KOQ8l%3A6 -->
+
+  <!-- use photowall project to ad comments/stars -->
+</div>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      ,
+      rel="stylesheet"
+      ,
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      ,
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      ,
+      rel="stylesheet"
+      ,
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      ,
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/43fec6c393.js"
+      crossorigin="anonymous"
+    ></script>
+
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bg-bbbbbb {
+      background: #bbbbbb;
+    }
+
+    .card {
+      overflow: hidden;
+    }
+    .card-img-top {
+      overflow: hidden;
+      transition: all 0.7s linear;
+    }
+
+    .card-img-top:hover {
+      width: 120%;
+    }
+
+    /* .main {
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(to-right, red, green);
+      position: relative;
+    }
+
+    nav {
+      width: 80%;
+      position: sticky;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .logo {
+      flex-basis: 20%;
+    }
+
+    .logo img {
+      width: 150px;
+    }
+
+    .nav-links {
+      flex-basis: 1;
+      text-align: right;
+    }
+
+    .nav-links ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .nav-links ul li a {
+      text-decoration: none;
+      color: black;
+    } */
+
+    .back-to-top {
+      position: fixed;
+      display: block;
+      border-radius: 4px;
+      /* background: url(../static/img/icons/chevron-up-circle.svg) no-repeat center; */
+      /* background-size: cover; */
+      background-color: rgba(240, 127, 35, 0.7);
+      padding: 7px 10px;
+      right: 1em;
+      bottom: 1em;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    footer {
+      margin-top: 20px;
+      background: linear-gradient(to-right, red, green);
+    }
+  </style>
+  <body id="top">
+    <div class="main container">
+      <nav class="navbar navbar-inverse navbar-expand-lg">
+        <a class="navbar-brand" href="/">LPLVNP &#x1F426;</a>
+        <!-- <div class="nav-links"> -->
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/api">API</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Custom Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reportage">Reportage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        </ul>
+        <!-- </div> -->
+      </nav>
+
+      <div>
+        {% block body %} {% endblock %}
+      </div>
+
+      <a href="#top" class="back-to-top"
+        ><img src="static/img/icons/chevron-up.svg" alt="back to top"
+      /></a>
+      <footer>
+        <p>copyright &copy; LPLVNP 2020</p>
+      </footer>
+    </div>
+    {% block javascript %} {% endblock %}
+  </body>
+</html>
+
+<!-- https://jinja.palletsprojects.com/en/2.11.x/templates/ -->

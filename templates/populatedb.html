@@ -1,0 +1,179 @@
+{% extends "base.html" %} {% block title %}LPLVNP - Populate Database{% endblock
+%} {% block head %}
+<style>
+  .selected {
+    background: yellow;
+  }
+</style>
+{% endblock %} {% block body %}
+<h1>
+  LPLVNP - Populate Database with Image Names
+</h1>
+<div id="lplvnp-main" class="row">
+  <div class="img-list col-md-6">
+    <div class="image center" style="width: 350px; height: auto;">
+      <img src="" alt="" style="width: 100%;" />
+    </div>
+    <div class="table-wrapper" style="height: 60%;overflow-y: scroll;">
+      <table class="table tablle-striped">
+        <thead>
+          <tr>
+            <th>image name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for image in images %}
+          <tr>
+            <td class="image-item">{{image}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="img-form col-md-6">
+    <form id="image-form">
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input
+          id="subject"
+          class="form-control"
+          type="text"
+          name="subject"
+          placeholder="image subject"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tag">tag</label>
+        <input
+          id="tag"
+          class="form-control"
+          type="text"
+          name="tag"
+          placeholder="image tag"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">description</label>
+        <input
+          id="description"
+          class="form-control"
+          type="text"
+          name="description"
+          placeholder="image description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="orientation">format</label>
+        <input
+          id="orientation"
+          class="form-control"
+          type="text"
+          name="orientation"
+          placeholder="image orientation"
+        />
+      </div>
+      <div class="form-group">
+        <label for="seasont">season</label>
+        <input
+          id="season"
+          class="form-control"
+          type="text"
+          name="season"
+          placeholder="image season"
+        />
+      </div>
+      <div class="form-group">
+        <label for="subject">name</label>
+        <input
+          id="name"
+          class="form-control"
+          type="text"
+          name="name"
+          placeholder="image name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="subject">stars</label>
+        <input
+          id="stars"
+          class="form-control"
+          type="text"
+          name="stars"
+          placeholder="image stars"
+        />
+      </div>
+      <div class="form-group">
+        <label for="subject">comments</label>
+        <input
+          id="comments"
+          class="form-control"
+          type="text"
+          name="comments"
+          placeholder="image comments"
+        />
+      </div>
+      <button id="create-img" class="btn btn-primary">Create Image</button>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block javascript %}
+<script>
+  document.addEventListener("DOMContentLoaded", event => {
+    console.log(">>> Page loaded");
+    const imageSrc = document.querySelector(".image img");
+    const imageForm = document.querySelector("#image-form");
+    const createImg = document.querySelector("#create-img");
+
+    clearForm(imageForm);
+
+    createImg.addEventListener("click", async event => {
+      event.preventDefault();
+
+      let formObj = {};
+
+      [...imageForm.elements].forEach(element => {
+        formObj[element.name] = element.value;
+      });
+      delete formObj[""];
+      // console.log('image name:', formObj);
+
+      if (!formObj.name) {
+        return alert("name field is required!");
+      }
+
+      const response = await fetch("http://localhost:5001/api/v1/images/new", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(formObj)
+      });
+
+      if (response.ok && response.status === 201) {
+        clearForm(imageForm);
+        return alert("Image added successfully!");
+      }
+
+      return alert("Failed to add image!");
+    });
+
+    const imageItems = document.querySelectorAll(".image-item");
+    imageItems.forEach(item => {
+      item.addEventListener("click", event => {
+        event.preventDefault();
+        event.target.classList.toggle("selected");
+        imageForm.elements.namedItem("name").value = event.target.innerText;
+        imageSrc.src = `http://localhost:5001/api/v1/images?image_name=${event.target.innerText}`;
+      });
+    });
+
+    function clearForm(form) {
+      [...form.elements].forEach(element => {
+        element.value = "";
+      });
+    }
+  });
+</script>
+{% endblock %}

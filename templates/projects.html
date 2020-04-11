@@ -1,0 +1,307 @@
+{% extends "base.html" %}{% block head %} {% block title %}<title>
+  LPLVNP Photo Projects</title
+>{% endblock %}
+<style>
+  .reportage-title {
+    background: #333;
+    margin: 20px 0;
+    /* text-align: center; */
+    border-radius: 3px;
+  }
+
+  .reportage-title h3 {
+    color: #ddd;
+  }
+
+  .card-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min-max(50vw, auto));
+  }
+
+  .card {
+    /* max-width: 30vw; */
+    margin-bottom: 10px !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    .card-deck {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f1f1f1;
+    /* padding: 20px;
+  font-family: Arial; */
+  }
+
+  /* Center website */
+  /* .main {
+  max-width: 1000px;
+  margin: auto;
+} */
+
+  h1 {
+    font-size: 50px;
+    word-break: break-all;
+  }
+
+  /* .row {
+  margin: 10px -16px;
+} */
+
+  /* Add padding BETWEEN each column */
+  /* .row,
+.row > .column {
+  padding: 8px;
+} */
+
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33.33%;
+    display: none; /* Hide all elements by default */
+  }
+
+  /* Clear floats after rows */
+  /* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+  /* Content */
+  .content {
+    background-color: white;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  img {
+    border-radius: 4px !important;
+
+    transition: all 0.5s linear;
+  }
+
+  img:hover {
+    width: 120%;
+  }
+
+  /* The "show" class is added to the filtered elements */
+  .show {
+    display: block;
+  }
+
+  /* Style the buttons */
+  .btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #ddd;
+  }
+
+  .btn.active {
+    background-color: #666;
+    color: white;
+  }
+</style>
+{% endblock %} {% block body %}
+<!-- <div class="reportage"> -->
+<div class="mx-auto">
+  <div class="row text-center reportage-title ">
+    <h3 class="mx-auto">LPLVNP Photography Projects</h3>
+  </div>
+
+  <div id="myBtnContainer row">
+    <button class="btn active" onclick="filterSelection('all')">
+      Show all
+    </button>
+    <button class="btn" onclick="filterSelection('sun')">Sunrise/set</button>
+    <button class="btn" onclick="filterSelection('building')">Building</button>
+    <button class="btn" onclick="filterSelection('cars')">Car Show</button>
+  </div>
+
+  <!-- Portfolio Gallery Grid -->
+  <div class="row mx-auto mt-3">
+    <div class="column cars">
+      <div class="content">
+        <img
+          src="../static/img/projects/carshow/dest/18917939332749cf824b917b528b966a.webp"
+          alt="Mountains"
+          style="width:100%"
+        />
+        <h4>Mountains</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column cars">
+      <div class="content">
+        <img
+          src="../static/img/projects/carshow/dest/2036c6afd4cb46eaa770a6fa766f99c3.webp"
+          alt="Lights"
+          style="width:100%"
+        />
+        <h4>Lights</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column cars">
+      <div class="content">
+        <img
+          src="../static/img/projects/carshow/dest/3a44e5a4e6b8496e97d456e6fc251dca.webp"
+          alt="Nature"
+          style="width:100%"
+        />
+        <h4>Forest</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+
+    <div class="column sun">
+      <div class="content">
+        <img
+          src="../static/img/projects/sunrise/dest/076ba78278564455b417cbef06551e44.webp"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Retro</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column sun">
+      <div class="content">
+        <img
+          src="../static/img/projects/sunrise/dest/2f9e4b6ded8d478c8be341a1c4867303.webp"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Fast</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column sun">
+      <div class="content">
+        <img
+          src="../static/img/projects/sunrise/dest/3f3c0afa4af545b180f24f4be7da9a64.webp"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Classic</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+
+    <div class="column building">
+      <div class="content">
+        <img
+          src="../static/img/projects/building/dest/35e8c2e2a1b44c76a131385d1c47eb4b.jpg"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Girl</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column building">
+      <div class="content">
+        <img
+          src="../static/img/projects/building/dest/552e611e6ff747bdb099c076c6cf3ee2.jpg"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Man</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <div class="column building">
+      <div class="content">
+        <img
+          src="../static/img/projects/building/dest/713a5aef30c642e19cc6bf25b0898361.jpg"
+          alt="Car"
+          style="width:100%"
+        />
+        <h4>Woman</h4>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+    <!-- END GRID -->
+  </div>
+
+  <!-- END MAIN -->
+  <!-- </div> -->
+
+  <script>
+    filterSelection("all");
+    function filterSelection(c) {
+      var x, i;
+      x = document.getElementsByClassName("column");
+      if (c == "all") c = "";
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+      }
+    }
+
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {
+          element.className += " " + arr2[i];
+        }
+      }
+    }
+
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);
+        }
+      }
+      element.className = arr1.join(" ");
+    }
+
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+  </script>
+
+  <!-- <div class="row mx-auto">
+    <div class="project-wrapper">
+      <div class="sunrise">
+        <h3>Sunrise Project</h3>
+      </div>
+      <div class="recycle-project">
+        <h3>Chicago Recycling Project</h3>
+      </div>
+      <div class="odds-project">
+        <h3>Odds Project</h3>
+      </div>
+      <div class="building-project">
+        <h3>Building Project</h3>
+      </div>
+    </div>
+  </div> -->
+</div>
+<!-- </div> -->
+{% endblock %}

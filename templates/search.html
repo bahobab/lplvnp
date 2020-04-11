@@ -1,0 +1,257 @@
+{% extends "base.html" %} {% block head %}{% block title %}<title>
+  LPLVNP Custom Search</title
+>{% endblock %}
+<style>
+  .search-area {
+    margin-top: 20px;
+  }
+
+  .search-title {
+    background: #333;
+    margin: 20px 0;
+    text-align: center;
+    border-radius: 3px;
+  }
+
+  .search-title h3 {
+    color: #ddd;
+    text-align: center;
+  }
+
+  .search-include {
+    margin-top: 20px;
+  }
+
+  .search-options {
+    margin-bottom: 20px;
+  }
+
+  #search-results {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+  }
+
+  .card {
+    border: 3px solid rgba(0, 0, 0, 0.125) !important;
+  }
+
+  .card img {
+    border-radius: 3px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #search-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="search-area">
+  <div class="row text-center search-title ">
+    <h3 class="mx-auto">Search for Pictures with These Properperties</h3>
+  </div>
+  <div class="row search-form-wrapper mx-auto bg-light">
+    <form id="search-form" class="mx-auto py-3">
+      <ul class="list-group mb-3">
+        <li class="list-group-item">
+          <fieldset class="pt-2">
+            <label for="subject">subject</label>
+            <input
+              class="form-check-inline"
+              id="subject"
+              type="text"
+              class="form-control"
+              name="subject"
+              placeholder="required"
+              required
+            />
+          </fieldset>
+        </li>
+        <li class="list-group-item">
+          <fieldset>
+            <label for="tag">Include tag in the search</label>
+            <input
+              class="form-check-inline"
+              id="tag"
+              type="checkbox"
+              class="form-control"
+              name="tag"
+            />
+          </fieldset>
+        </li>
+      </ul>
+
+      <!-- <h4 class="search-include"></h4> -->
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-group orientation search-options">
+            Photo orientation
+            <li class="list-group-item">
+              <fieldset>
+                <label for="landscape">
+                  <input
+                    class="form-check-inline"
+                    id="landscape"
+                    type="checkbox"
+                    class="form-control"
+                    name="landscape"
+                  />landscape</label
+                >
+              </fieldset>
+            </li>
+            <li class="list-group-item">
+              <fieldset>
+                <label for="portrait">
+                  <input
+                    class="form-check-inline"
+                    id="portrait"
+                    type="checkbox"
+                    class="form-control"
+                    name="portrait"
+                  />portrait</label
+                >
+              </fieldset>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <ul class="list-group Season search-options">
+            Photo taken in
+            <li class="list-group-item">
+              <fieldset>
+                <label for="winter">
+                  <input
+                    class="form-check-inline"
+                    id="winter"
+                    type="checkbox"
+                    class="form-control"
+                    name="winter"
+                  />winter</label
+                >
+              </fieldset>
+            </li>
+            <li class="list-group-item">
+              <fieldset>
+                <label for="spring">
+                  <input
+                    class="form-check-inline"
+                    id="spring"
+                    type="checkbox"
+                    class="form-control"
+                    name="spring"
+                  />spring</label
+                >
+              </fieldset>
+            </li>
+            <li class="list-group-item">
+              <fieldset>
+                <label for="summer">
+                  <input
+                    class="form-check-inline"
+                    id="summer"
+                    type="checkbox"
+                    class="form-control"
+                    name="summer"
+                  />summer</label
+                >
+              </fieldset>
+            </li>
+            <li class="list-group-item">
+              <fieldset>
+                <label for="autumn">
+                  <input
+                    class="form-check-inline"
+                    id="autumn"
+                    type="checkbox"
+                    class="form-control"
+                    name="autumn"
+                  />autumn</label
+                >
+              </fieldset>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button id="search-button" class="btn btn-primary">Find image</button>
+    </form>
+  </div>
+  <div class="container">
+    <div class="row text-center">
+      <div id="search-results" class="card-group"></div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block javascript %}
+<script>
+  const searchForm = document.querySelector("#search-form");
+  const searchBtn = document.querySelector("#search-button");
+  const searchResults = document.querySelector("#search-results");
+
+  searchBtn.addEventListener("click", async event => {
+    event.preventDefault();
+
+    // build querystring
+
+    if (!searchForm.subject.value) {
+      // handle field validation
+      return alert("Please provide subject or tag value");
+    }
+
+    const {
+      subject,
+      landscape,
+      portrait,
+      winter,
+      spring,
+      summer,
+      autumn
+    } = searchForm.elements;
+
+    let querystring = `subject=${subject.value}&landscape=${landscape.checked}&portrait=${portrait.checked}&winter=${winter.checked}&spring=${spring.checked}&summer=${summer.checked}&autumn=${autumn.checked}`;
+
+    const response = await fetch(
+      `http://localhost:5001/api/v1/images/search?${querystring}`
+    );
+
+    console.log(">> response", response);
+
+    if (response.ok && response.status == 200) {
+      const json = await response.json();
+      console.log(">> json", json);
+
+      if (json.length !== 0) {
+        const imageList = showResults(json);
+        searchResults.innerHTML = imageList;
+      } else {
+        searchResults.innerHTML = `<h5 class="mx-auto text-center bg-secondary text-warning">No images found!</h5>`;
+      }
+    } else {
+      console.log(response);
+    }
+  });
+
+  function showResults(images) {
+    // const imageList = document.createElement("div");
+
+    const imageList = images
+      .map(image => {
+        return `
+        <div class="card m-2 p-3">
+    <img class="card-img-top" src="http://localhost:5001/api/v1/images?image_name=${image.name}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">${image.subject}</h5>
+      <p class="card-text">${image.description}</p>
+      <p class="card-text">Stars: <small class="text-muted">${image.stars}</small></p>
+      <p class="card-text">Comments: <small class="text-muted">${image.comments}</small></p>
+    </div>
+  </div>
+      `;
+      })
+      .join("");
+
+    return imageList;
+  }
+</script>
+{% endblock %}

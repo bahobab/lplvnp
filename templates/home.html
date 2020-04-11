@@ -1,0 +1,150 @@
+{% extends "base.html" %}{% block head %} {% block title %}<title>
+  Welcome to LPLVNP Home</title
+>{% endblock %}
+<style>
+  .jumbotron {
+    /* width: 100%; */
+    height: 88vh;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(static/img/task-5.JPG) no-repeat center;
+    background-size: cover;
+  }
+
+  .jumbotron p,
+  .display-4,
+  .lead {
+    color: var(--white);
+  }
+
+  article {
+    width: 100%;
+    min-height: 400px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .card-header {
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.5),
+      rgba(255, 255, 255, 0.7)
+    );
+  }
+
+  .bg-555555 {
+    background: #555555;
+  }
+
+  .bg-777777 {
+    background: #999999;
+  }
+
+  @media screen and (min-width: 768px) {
+    .card-text {
+      columns: 2 auto;
+      column-rule: solid 1px;
+    }
+  }
+</style>
+{% endblock %} {% block body %}
+<!-- <div class="container"> -->
+<div class="jumbotron mt-3">
+  <h1 class="display-4">LP LV NP</h1>
+  <p class="lead">
+    Lincoln Park, Lakeview, North Pond photo API (<span class="text-danger"
+      >beta</span
+    >)
+  </p>
+  <hr class="my-4" />
+  <p class="pt-3">
+    Use the beautiful pictures of this unique Chicago neighborhood to build web
+    or illustration projects.
+  </p>
+  <a class="btn btn-primary btn-lg" href="#home-start" role="button"
+    >Learn more</a
+  >
+</div>
+<!-- </div> -->
+<div id="home-start" class="container">
+  <section class="row">
+    <article class="home_api">
+      <div class="card border-primary mb-3 bg-555555">
+        <div class="card-header">
+          API V1 (<span class="text-danger">beta</span>)
+        </div>
+        <div class="card-body text-white text-center">
+          <h5 class="card-title">LP-LV-NP photo sharing</h5>
+          <p class="card-text">
+            I've taken lots and lots of pictures in Lincoln Park, Lakeview and
+            around the North Pond for over 15 years. It's a pleasure to make
+            some available to you via and API for your enjoyment, or use them to
+            build your projects. In particular I photographed the North Pond 365
+            X 360. This means that the pictures are from all angles and all
+            seasons. Enjoy them and share your feedback.
+          </p>
+          <p>
+            <a href="/api" role="button" class="btn btn-primary">Got to api</a>
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="row">
+    <article class="home_search">
+      <div class="card border-danger mb-3 bg-777777">
+        <div class="card-header">Search Photo</div>
+        <div class="card-body text-white text-center">
+          <h5 class="card-title text-center">Use a custom search form</h5>
+          <p class="card-text">
+            For your convenience, I've made available a search form where you
+            can specify the criteria of the photos you're looking for. You must
+            provide the subject of the photo And either the orientation
+            (portrait or landscape) or the season the photo was taken, or both.
+            This search will return at most 10 random images that meet the
+            criteria you specified. You can download and use the photos
+            royalty-free.
+          </p>
+          <p>
+            <a href="/search" role="button" class="btn btn-primary"
+              >Go to search</a
+            >
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="row">
+    <article class="home_reportage">
+      <div class="card border-success mb-3 bg-555555">
+        <div class="card-header">Photo reportage</div>
+        <div class="card-body text-white text-center">
+          <h5 class="card-title">Primary card title</h5>
+          <p class="card-text">
+            Often, I happened to be fortunate to be there at the moment an event
+            is occurring. And like a "chasseur d'image", or a paparazzi if you
+            prefer, I snap some shots to record the event. For example you'll
+            see the series of photos of a male goose standing gard to protect a
+            female goose covering her eggs. Another interesting event was a bird
+            that just killed a frog and now battling to swallow for lunch... In
+            Lincoln Park the statue of Alex Hamilton shines bright. After being
+            polished it was returned and it's now facing North, creating a huge
+            controversy among the park goers as to why Alex is now looking
+            outside of the park.
+          </p>
+          <p>
+            <a href="/reportage" role="button" class="btn btn-primary"
+              >Go to reportage</a
+            >
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+{% endblock %}

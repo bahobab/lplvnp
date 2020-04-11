@@ -1,0 +1,310 @@
+# https://dzone.com/articles/creating-a-readable-rest-api?edition=589310&utm_source=Daily%20Digest&utm_medium=email&utm_campaign=Daily%20Digest%202020-04-10
+
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our code
+  version: "1.0.0"
+  title: Swagger REST App
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+basePath: "/api/v1"
+
+# Paths supported by the application
+paths:
+  /images/{subject}/{n}:
+    get:
+      operationId: "images.get_subject_n"
+      tags:
+        - "Image"
+      summary: "Get n images of subject"
+      description: "Get n random images of any subject"
+      responses:
+        200:
+          description: "Return n Images of subject"
+          schema:
+            type: "array"
+            items:
+              properties:
+                image_id:
+                  type: "string"
+                name:
+                  type: "string"
+                orientation:
+                  type: "string"
+                subject:
+                  type: "string"
+                season:
+                  type: "string"
+                description:
+                  type: "string"
+                image_url:
+                  type: "string"
+                comments:
+                  type: "string"
+                stars:
+                  type: "string"
+      parameters:
+        - name: subject
+          in: path
+          required: True
+          description: "subject of images to return"
+          type: string
+          # schema:
+        - name: n
+          in: path
+          required: True
+          description: "number of images to return"
+          type: integer
+          # schema: used when it's an object
+
+  /images/all:
+    get:
+      operationId: "images.get_all"
+      tags:
+        - "Image"
+      summary: "List all the images"
+      description: "Show all the images in the application... It could be huge!"
+      responses:
+        200:
+          description: "Image retrieved successfully"
+          schema:
+            type: "array"
+            items:
+              properties:
+                image_id:
+                  type: "string"
+                name:
+                  type: "string"
+                orientation:
+                  type: "string"
+                subject:
+                  type: "string"
+                season:
+                  type: "string"
+                description:
+                  type: "string"
+                image_url:
+                  type: "string"
+                comments:
+                  type: "string"
+                stars:
+                  type: "string"
+
+        404:
+          description: "Image retrieval not successful"
+
+  /images/all/{n}:
+    get:
+      operationId: "images.get_all_n"
+      tags:
+        - "Image"
+      summary: "Get n images"
+      description: "Get n random images of any subject"
+      parameters:
+        - in: path
+          name: n
+          required: True
+          description: "number of images to return"
+          type: integer
+          # schema: used when it's an object
+      responses:
+        200:
+          description: "Image retrieved successfully"
+          schema:
+            type: "array"
+            items:
+              properties:
+                image_id:
+                  type: "string"
+                name:
+                  type: "string"
+                orientation:
+                  type: "string"
+                subject:
+                  type: "string"
+                season:
+                  type: "string"
+                description:
+                  type: "string"
+                image_url:
+                  type: "string"
+                comments:
+                  type: "string"
+                stars:
+                  type: "string"
+
+  /images/new:
+    post:
+      operationId: "images.add"
+      tags:
+        - "Image"
+      summary: "Add an new image"
+      description: "Add a new image to the database"
+      parameters:
+        - name: image
+          in: body
+          description: "image to add"
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              orientation:
+                type: "string"
+              subject:
+                type: "string"
+              season:
+                type: "string"
+              description:
+                type: "string"
+              image_url:
+                type: "string"
+              comments:
+                type: "string"
+              stars:
+                type: "string"
+      responses:
+        201:
+          description: successfully added an image
+          schema:
+            properties:
+              image_id:
+                type: "string"
+              name:
+                type: "string"
+              orientation:
+                type: "string"
+              subject:
+                type: "string"
+              season:
+                type: "string"
+              description:
+                type: "string"
+              image_url:
+                type: "string"
+              comments:
+                type: "string"
+              stars:
+                type: "string"
+
+        401:
+          description: "Image already exists"
+
+  /images/{image_name}:
+    get:
+      operationId: "images.get_one"
+      tags:
+        - "Image"
+      summary: "Retrieve image by name"
+      description: "retrieve one image with the image name"
+      parameters:
+        - name: image_name
+          in: path
+          description: name of the image requested
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Image retrieved successfully"
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              orientation:
+                type: "string"
+              subject:
+                type: "string"
+              season:
+                type: "string"
+              description:
+                type: "string"
+              image_url:
+                type: "string"
+              comments:
+                type: "string"
+              stars:
+                type: "string"
+              created_at:
+                type: "string"
+
+  /images:
+    get:
+      operationId: images.get_image
+      tags:
+        - "Image"
+      summary: "Get one image with query string ?image_name="
+      description: "Get an image using query string"
+      parameters:
+        - in: query
+          name: image_name
+          type: string
+      responses:
+        200:
+          description: "Image file returned successfully"
+
+  /images/search:
+    get:
+      operationId: images.search
+      tags:
+        - "Image"
+      summary: "Search images with criteria in querystring"
+      description: "Find images by providing subject tag image oriention or season"
+      parameters:
+        - in: query
+          name: subject
+          type: string
+          description: "image subject"
+        - in: query
+          name: portrait
+          type: string
+          description: "image orientation"
+        - in: query
+          name: landscape
+          type: string
+          description: "image orientation"
+        - in: query
+          name: winter
+          type: string
+          description: "image season"
+        - in: query
+          name: spring
+          type: string
+          description: "image season"
+        - in: query
+          name: summer
+          type: string
+          description: "image season"
+        - in: query
+          name: autumn
+          type: string
+          description: "image season"
+      responses:
+        200:
+          description: "Search successful"
+        404:
+          description: "Invalid search"
+  # /download/{image_name}:
+  #   get:
+  #     operationId: download.get_image
+  #     tags:
+  #       - "Image"
+  #     summary: "Image to download"
+  #     description: "download image"
+  #     parameters:
+  #       - name: image_url
+  #         in: path
+  #         description: url of the requested image
+  #         type: string
+  #         required: True
+  #     responses:
+  #       200:
+  #         description: "image file returned successfully"
+  #         schema:
+  #           type: string
+  #           format: byte
+  #       404:
+  #         description: "Image file not found"

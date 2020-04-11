@@ -1,0 +1,358 @@
+{% extends "base.html" %}{% block head %} {% block title %}<title>
+  LPLVNP Photo Reportage</title
+>{% endblock %}
+<style>
+  .reportage-title {
+    background: #333;
+    margin: 20px 0;
+    /* text-align: center; */
+    border-radius: 3px;
+  }
+
+  .reportage-title h3 {
+    color: #ddd;
+  }
+
+  .card-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min-max(50vw, auto));
+  }
+
+  .card {
+    /* max-width: 30vw; */
+    margin-bottom: 10px !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    .card-deck {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+{% endblock %} {% block body %}
+<!-- <div class="reportage"> -->
+<div class="mx-auto">
+  <div class="row text-center reportage-title ">
+    <h3 class="mx-auto">LPLVNP Photo Reportage</h3>
+  </div>
+  <div class="row mx-auto">
+    <!-- <div class="col-sm-6 col-md-4 col-xl-3 mb-3"></div> -->
+    <div class="card-deck">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="static/img/reportage/hamilton.jpg"
+          alt="Hamilton"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Hamilton...Shining -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/hamilton.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >There's stil a debate about Hamilton facing South or North</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/food-chain.jpg"
+          alt="Food chain"
+        />
+        <!-- <video controls width="100%">
+          <source
+            type="video/mp4"
+            src="/static/img/reportage/food-chain/dest/food-chain.m4v"
+          />
+          Food Chain
+        </video> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            The North Pond -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/northpond.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            This card has supporting text below as a natural lead-in to
+            additional content.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >The bird ended up giving up its dinner</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/69f860209ccd4a9580b4e7a06b365162.jpg"
+          alt="Governor JB"
+        />
+        <!-- <video controls width="100%">
+                      <source
+                        type="video/mp4"
+                        src="/static/img/reportage/scurrel/dest/scurrel.m4v"
+                      />
+                      Food Chain
+                    </video> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            Governor JB -
+            <span class="gallery"
+              ><a href="{{ url_for('gallery', filename='gallery/govjb.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
+            eius?
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit.</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/squirrel.jpg"
+          alt="squirrel"
+        />
+        <!-- <video controls width="100%">
+                <source
+                  type="video/mp4"
+                  src="/static/img/reportage/scurrel/dest/scurrel.m4v"
+                />
+                Food Chain
+              </video> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            Food Chain -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/squirrel.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
+            eius?
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit.</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/walking.jpg"
+          alt="walking"
+        />
+        <!-- <video controls width="100%">
+          <source
+            type="video/mp4"
+            src="/static/img/reportage/scurrel/dest/scurrel.m4v"
+          />
+          Food Chain
+        </video> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            Walking -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/walking.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
+            eius?
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum
+            exercitationem perspiciatis nisi ullam!</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/promusica.jpg"
+          alt="Promusica"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Promusica -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/promusica.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This card has even longer content than the
+            first to show that equal height action.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Live music and pizza party with artists</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/bourgeoispig.jpg"
+          alt="Bourgeois Pig"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Bourgeois Pig -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/bourgeois_pig.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi alias
+            ut debitis atque incidunt, eos quidem omnis quia dolore minus?
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Live music and pizza party with artists</small
+          >
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/goosegard.jpg"
+          alt="Goose gard"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Goose Gard -
+            <span class="gallery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/goose_guard.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet
+            possimus tenetur nulla nisi ex qui.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Caldwell Lily Pond</small>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/crane-up.jpg"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Crane! Construction -
+            <span class="galery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/construction.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            rem animi sint suscipit autem sed quo voluptas saepe iste cumque.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">A great example of team work</small>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="./static/img/reportage/sunrise4.webp"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Sunrise -
+            <span class="galery"
+              ><a
+                href="{{ url_for('gallery', filename='gallery/sunrise.html') }}"
+                >Gallery</a
+              ></span
+            >
+            -
+            <span class="slides"><a href="">Slides</a></span>
+          </h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            rem animi sint suscipit autem sed quo voluptas saepe iste cumque.
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Sunrise at Diversey Harbor</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->
+{% endblock %}
